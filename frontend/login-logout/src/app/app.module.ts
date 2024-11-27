@@ -9,28 +9,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './helpers/auth.interceptor';
-import { DashboardComponent } from './user/dashboard/dashboard.component';
-
-const routes: Routes=[
-  {path:'register', component:RegisterComponent},
-  {path:'login', component:LoginComponent},
-  {path:'', redirectTo:'/login',pathMatch: 'full'},
-  {path:'**', redirectTo: '/login',pathMatch: 'full'}
-];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent,
+    
   ],
   imports: [
-    RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
