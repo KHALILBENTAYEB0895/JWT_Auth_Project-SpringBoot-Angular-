@@ -1,89 +1,88 @@
-<div class="container mt-5">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
-      <!-- First Name -->
-      <div class="mb-3">
-        <label for="firstName" class="form-label">Prénom</label>
-        <input
-          type="text"
-          id="firstName"
-          class="form-control"
-          formControlName="firstName"
-          [ngClass]="{ 'is-invalid': submitted && registerForm.controls['firstName'].invalid }"
-        />
-        <div *ngIf="submitted && registerForm.controls['firstName'].errors" class="invalid-feedback">
-          <span *ngIf="registerForm.controls['firstName'].errors['required']">
-            Le prénom est requis.
-          </span>
-        </div>
+<div class="container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+    <h2>Register</h2>
+    <!-- First Name -->
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        id="firstName"
+        class="form-control"
+        formControlName="firstName"
+        [ngClass]="{ 'is-invalid': submitted && registerForm.controls['firstName'].invalid }"
+      />
+      <div *ngIf="submitted && registerForm.controls['firstName'].errors" class="invalid-feedback">
+        <span *ngIf="registerForm.controls['firstName'].errors['required']">
+          Le prénom est requis.
+        </span>
       </div>
-  
-      <!-- Last Name -->
-      <div class="mb-3">
-        <label for="lastName" class="form-label">Nom</label>
-        <input
-          type="text"
-          id="lastName"
-          class="form-control"
-          formControlName="lastName"
-          [ngClass]="{ 'is-invalid': submitted && registerForm.controls['lastName'].invalid }"
-        />
-        <div *ngIf="submitted && registerForm.controls['lastName'].errors" class="invalid-feedback">
-          <span *ngIf="registerForm.controls['lastName'].errors['required']">
-            Le nom est requis.
-          </span>
-        </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        formControlName="lastName"
+        [ngClass]="{ 'is-invalid': submitted && registerForm.controls['lastName'].invalid }"
+      />
+      <div *ngIf="submitted && registerForm.controls['lastName'].errors" class="invalid-feedback">
+        <span *ngIf="registerForm.controls['lastName'].errors['required']">
+          Le nom est requis.
+        </span>
       </div>
-  
-      <!-- Username -->
-      <div class="mb-3">
-        <label for="username" class="form-label">Nom d'utilisateur</label>
-        <input
-          type="text"
-          id="username"
-          class="form-control"
-          formControlName="username"
-          [ngClass]="{ 'is-invalid': submitted && registerForm.controls['username'].invalid }"
-        />
-        <div *ngIf="submitted && registerForm.controls['username'].errors" class="invalid-feedback">
-          <span *ngIf="registerForm.controls['username'].errors['required']">
-            Le nom d'utilisateur est requis.
-          </span>
-          <span *ngIf="registerForm.controls['username'].errors['minlength']">
-            Le nom d'utilisateur doit comporter au moins  caractères.
-          </span>
-        </div>
+    </div>
+
+    <!-- Username -->
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="text"
+        id="username"
+        class="form-control"
+        formControlName="username"
+        [ngClass]="{ 'is-invalid': submitted && registerForm.controls['username'].invalid }"
+      />
+      <div *ngIf="submitted && registerForm.controls['username'].errors" class="invalid-feedback">
+        <span *ngIf="registerForm.controls['username'].errors['required']">
+          Le nom d'utilisateur est requis.
+        </span>
+        <span *ngIf="registerForm.controls['username'].errors['minlength']">
+          Le nom d'utilisateur doit comporter au moins 3 caractères.
+        </span>
       </div>
-  
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          formControlName="password"
-          [ngClass]="{ 'is-invalid': submitted && registerForm.controls['password'].invalid }"
-        />
-        <div *ngIf="submitted && registerForm.controls['password'].errors" class="invalid-feedback">
-          <span *ngIf="registerForm.controls['password'].errors['required']">
-            Le mot de passe est requis.
-          </span>
-          <span *ngIf="registerForm.controls['password'].errors['minlength']">
-            Le mot de passe doit comporter au moins 6 caractères.
-          </span>
-        </div>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        formControlName="password"
+        [ngClass]="{ 'is-invalid': submitted && registerForm.controls['password'].invalid }"
+      />
+      <div *ngIf="submitted && registerForm.controls['password'].errors" class="invalid-feedback">
+        <span *ngIf="registerForm.controls['password'].errors['required']">
+          Le mot de passe est requis.
+        </span>
+        <span *ngIf="registerForm.controls['password'].errors['minlength']">
+          Le mot de passe doit comporter au moins 6 caractères.
+        </span>
       </div>
-  
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary">S'inscrire</button>
-  
-      <!-- Error Message -->
-      <div class="form-group">
-        <div class="alert alert-danger" role="alert" *ngIf="submitted && isRegisterFailed">
-          Enregistrement échoué : {{ errorMessage }}
-        </div>
-      </div>
-    </form>
-  </div>
-  
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+
+    <!-- Error Message -->
+    <div *ngIf="submitted && isRegisterFailed" class="alert alert-danger">
+      Enregistrement échoué : {{ errorMessage }}
+    </div>
+  </form>
+</div>
+
   

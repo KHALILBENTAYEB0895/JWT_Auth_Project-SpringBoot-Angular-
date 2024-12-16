@@ -1,9 +1,9 @@
 import { TokenStorageService } from './../../services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotOnlyWhitespaceValidator } from '../../validators/notOnlyWhitespaceValidator';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { NotOnlyWhitespaceValidator } from '../../validators/notOnlyWhitespaceValidator';
 
 @Component({
   selector: 'app-login',
@@ -37,11 +37,18 @@ export class LoginComponent implements OnInit{
         (response) => {
           console.log('Login succeful !', response);
           
-          // Enregistrer le token dans localStorage
-          this.tokenStorageService.saveToken(response.token);
+          // recuperation du role 
+          const role = localStorage.getItem('role');
+          console.log(role);
 
-          // Rediriger vers la page principale
-          this.router.navigate(['/']);
+          // Rediriger en fonction du role 
+          if(role==='ADMIN'){
+            this.router.navigate(['/admin'])
+          }else if(role==='USER'){
+            this.router.navigate(['/user'])
+          }else{
+            this.router.navigate(['/'])
+          }
         },
         (error) => {
           console.error('Login failed', error);
